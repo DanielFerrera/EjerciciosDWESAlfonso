@@ -1,6 +1,5 @@
 <?php
 $fichero=fopen("alumnos1.txt","r");
-
 # Este bucle nos escribirá cada una de las lineas del fichero
 echo "<table border=2>";
 echo "<tr>";

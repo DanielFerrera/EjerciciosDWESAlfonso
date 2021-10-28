@@ -23,34 +23,16 @@ $apellido1=test_input($_POST['Apellido1']);
 $apellido2=test_input($_POST['Apellido2']);
 $fecha=test_input($_POST['fechanac']);
 $localidad=test_input($_POST['localidad']);
-}
-  //creamos el fichero
-  // echo "Metodo usado: ",$_SERVER['REQUEST_METHOD'],"<br>";
-if (file_exists("alumnos2.txt")) {
+
+//creamos el fichero
+$linea=$nombre."##".$apellido1."##".$apellido2."##".$fecha."##".$localidad;
+$lineaespacio="\n".$nombre."##".$apellido1."##".$apellido2."##".$fecha."##".$localidad;
+if (file_exists("alumnos2.txt")==true) {
   $fichero=fopen("alumnos2.txt","a");
-  fwrite($fichero, $nombre."##");
-  fwrite($fichero,$apellido1."##");
-  fwrite($fichero,$apellido2."##");
-$fecha1=explode("/",$fecha);
-  if (checkdate($fecha1[0],$fecha1[1],$fecha1[2])==true) {
-    fwrite($fichero,$fecha."##");
-  }else{
-    fwrite($fichero,"Fecha Errónea ##");
-  }
-  fwrite($fichero,$localidad."## \n");
- fclose($fichero);
+fwrite($fichero,$lineaespacio);
+}else{
+  $fichero=fopen("alumnos2.txt","a");
+  fwrite($fichero,$linea);
 }
-if (!file_exists("alumnos2.txt")) {
-  $fichero=fopen("alumnos2.txt","w");
-  fwrite($fichero, $nombre."##");
-  fwrite($fichero,$apellido1."##");
-  fwrite($fichero,$apellido2."##");
-$fecha1=explode("/",$fecha);
-  if (checkdate($fecha1[0],$fecha1[1],$fecha1[2])==true) {
-    fwrite($fichero,$fecha."##");
-  }else{
-    fwrite($fichero,"Fecha Errónea ##");
-  }
-  fwrite($fichero,$localidad."## \n");
- fclose($fichero);
+fclose($fichero);
 }
