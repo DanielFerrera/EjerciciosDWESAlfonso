@@ -2,7 +2,7 @@
 
 include '../funciones/seguridaddata.php';
 //creamos el fichero
-$fichero=fopen("ficheroalumnos.txt","w");
+$fichero=fopen("alumnos1.txt","w");
 // echo "Metodo usado: ",$_SERVER['REQUEST_METHOD'],"<br>";
 $nombre= $apellido1 = $apellido2 = $fecha = $localidad= "";
 

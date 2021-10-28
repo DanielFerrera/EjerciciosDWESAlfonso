@@ -1,0 +1,5 @@
+Nombre:                                   Carlos 
+Apellido1:                                     Leal 
+Apellido2:                                     Bobo 
+Fecha Nacimiento: 1/1/2001
+Localidad:                    Andorra 
