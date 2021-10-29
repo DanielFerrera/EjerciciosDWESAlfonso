@@ -4,6 +4,7 @@ echo "<h1>Operaciones Sistemas Ficheros</h1>";
 $origen=$_POST['origen'];$destino=$_POST['destino'];
 $eleccion=$_POST['op'];
 
+
 if (empty($origen)) {
   echo "No se ha introducido ruta origen </br>";
 }//del if
@@ -27,12 +28,19 @@ if (!empty($eleccion)) {
 function copiar($origen,$destino){
   echo "Se va a proceder a COPIAR</br>";
   echo "Ruta Origen: $origen </br> Ruta Destino: $destino";
-  if (!copy($origen, $destino)) {
-    print("Error en el proceso de copia<br>\n");
-  }else{
-    print "<br>Fichero copiado con exito
-    Copiado: $origen -> $destino<br>
-    ";
+  if (!file_exists($destino))
+  {
+	  $dir=substr($destino,0,strpos($destino,"\\"));
+    echo $dir;
+	  mkdir($dir,0777,true);
+  }
+	  if (!copy($origen, $destino)) {
+			print("Error en el proceso de copia<br>\n");
+		  }else{
+			print "<br>Fichero copiado con exito
+			Copiado: $origen -> $destino<br>
+			";
+
   }
 }
 
