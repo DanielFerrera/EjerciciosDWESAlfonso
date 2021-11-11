@@ -1,7 +1,9 @@
 <?php
+include 'funciones_bolsa.php';
 
-include '../funciones_bolsa.php';
+$fichero=file("ibex35.txt");
 
-$z=file('../ibex35.txt');
-echo verfichero($z);
-?>
+//leemos por cada linea con esta funcion
+verfichero($fichero);
+
+ ?>

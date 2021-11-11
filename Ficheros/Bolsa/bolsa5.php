@@ -1,8 +1,8 @@
 <?php
 
-include '../funciones_bolsa.php';
+include './funciones_bolsa.php';
 
-$z=file('../ibex35.txt');
+$z=file('./ibex35.txt');
   $nombre=$_POST['Nombre'];
     $nombre2=$_POST['Nombre2'];
     echo valoresacum($z,$nombre,$nombre2);
@@ -17,7 +17,4 @@ $z=file('../ibex35.txt');
 //16 -104
 //8
 //5
-
-
-
 ?>

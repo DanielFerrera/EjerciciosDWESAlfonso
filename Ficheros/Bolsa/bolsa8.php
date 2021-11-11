@@ -1,8 +1,8 @@
 <?php
 
-include '../funciones_bolsa.php';
+include 'funciones_bolsa.php';
   echo "<h1>Consulta Operaciones Bolsa</h1>";
-$z=file('../ibex35.txt');
+$z=file('ibex35.txt');
   $valor=$_POST['valor'];
     $elegido=$_POST['elegido'];
     echo "  Valor:  <input type='text' name='valor' value='$valor'> <br>";

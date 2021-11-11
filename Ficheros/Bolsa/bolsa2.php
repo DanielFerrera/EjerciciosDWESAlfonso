@@ -1,9 +1,9 @@
 <?php
+include './funciones_bolsa.php';
 
-include '../funciones_bolsa.php';
+$fichero=file("ibex35.txt");
+$palabra=$_POST['nombre'];
+encontrarpalabrafichero($fichero,$palabra);
 
-$z=file('../ibex35.txt');
-  $nombre=$_POST['Nombre'];
 
-echo encontrarpalabrafichero ($z,$nombre);
-?>
+ ?>
