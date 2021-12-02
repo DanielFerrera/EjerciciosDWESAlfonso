@@ -7,11 +7,12 @@ $nombredept=$_POST['nombredept'];
 $servername="localhost"; $username="root"; $password="rootroot"; $dbname="empleadosnnprofe";
 
 //Comprobacion de parametros
-revisarparamentros($servername, $username, $password, $dbname);
+revisarparamentros($nombredept);
 
 //Lógica de Negocio
 $conexion=crearconexionpdo($servername, $username, $password, $dbname);
 creardepartamentopdo($nombredept,$conexion);
 
-
+//Cerramos la conexion
+$conexion=null;
  ?>

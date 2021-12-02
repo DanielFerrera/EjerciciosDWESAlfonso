@@ -1,10 +1,7 @@
 <?php
-function revisarparamentros($servername, $username, $password, $dbname){
+function revisarparamentros($nombredept){
   if ($_SERVER["REQUEST_METHOD"] == "POST") {
-  $servername = test_input($servername);
-  $username = test_input($username);
-  $password = test_input($password);
-  $dbname = test_input($dbname);
+  $nombredept = test_input($nombredept);
 }
 }
 
