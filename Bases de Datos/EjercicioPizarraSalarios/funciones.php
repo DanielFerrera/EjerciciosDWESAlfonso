@@ -137,7 +137,7 @@ function actualizartablaemple_departfechafin($dni,$nombredept,$conexion){
 function mostrarempleadosysumasalario($nombredept,$conexion){
   try {
     //datos totales
-    $stmt1 = $conexion->prepare("SELECT empleado.nombre,empleado.salario FROM empleado,emple_depart,departamento WHERE emple_depart.dni=empleado.dni and departamento.cod_dpto=emple_depart.cod_dpto and departamento.nombre_dpto='$nombredept'");
+    $stmt1 = $conexion->prepare("SELECT empleado.nombre,empleado.salario FROM empleado,emple_depart,departamento WHERE emple_depart.dni=empleado.dni and departamento.cod_dpto=emple_depart.cod_dpto and departamento.nombre_dpto='$nombredept' and emple_depart.fecha_fin IS NULL");
     $stmt1->execute();
     $result = $stmt1->setFetchMode(PDO::FETCH_ASSOC);
     echo "<ul>";
@@ -150,7 +150,7 @@ function mostrarempleadosysumasalario($nombredept,$conexion){
     }
     echo "</ul>";
     //suma de salarios
-    $stmt2 = $conexion->prepare("SELECT SUM(salario) AS 'SUMASALARIOS' FROM empleado,emple_depart,departamento WHERE emple_depart.dni=empleado.dni and departamento.cod_dpto=emple_depart.cod_dpto and departamento.nombre_dpto='$nombredept'");
+    $stmt2 = $conexion->prepare("SELECT SUM(salario) AS 'SUMASALARIOS' FROM empleado,emple_depart,departamento WHERE emple_depart.dni=empleado.dni and departamento.cod_dpto=emple_depart.cod_dpto and departamento.nombre_dpto='$nombredept' and emple_depart.fecha_fin IS NULL");
     $stmt2->execute();
     $result = $stmt2->setFetchMode(PDO::FETCH_ASSOC);
     echo "<ul>";

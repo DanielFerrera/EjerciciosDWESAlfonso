@@ -17,7 +17,7 @@
               //Fichero de funciones
               include "./funciones.php";
               //Parametros
-              $servername="localhost"; $username="root"; $password="rootroot"; $dbname="empleadosnn";
+              $servername="localhost"; $username="root"; $password="rootroot"; $dbname="empleadosnnprofe";
 
               //Creamos la conexion
               $conexion=crearconexionpdo($servername, $username, $password, $dbname);
@@ -50,8 +50,6 @@
   // Si se pulsa el boton de enviar
   if (isset($_POST['enviar'])) {
     // echo "</br>$nombredept";
-    //funcion con varios selects
-    // mostrarsalarioempleadosdepartamento($nombredept,$conexion);
     //funcion que saca empleado+Salario y sum(salario)
     mostrarempleadosysumasalario($nombredept,$conexion);
   }
