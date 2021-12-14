@@ -134,6 +134,41 @@ function actualizartablaemple_departfechafin($dni,$nombredept,$conexion){
             }
 }
 
+function mostrarempleadosysumasalario($nombredept,$conexion){
+  try {
+    //datos totales
+    $stmt1 = $conexion->prepare("SELECT empleado.nombre,empleado.salario FROM empleado,emple_depart,departamento WHERE emple_depart.dni=empleado.dni and departamento.cod_dpto=emple_depart.cod_dpto and departamento.nombre_dpto='$nombredept'");
+    $stmt1->execute();
+    $result = $stmt1->setFetchMode(PDO::FETCH_ASSOC);
+    echo "<ul>";
+    foreach($stmt1->fetchAll() as $row) {
+      // echo "Cod_dpto: " . $row["cod_dpto"]."<br>";
+      //obtengo el codigo para filtrar por codigo por que es la primary key
+      echo"<li><b>Nombre</b> $row[nombre] - ";
+      echo"<b>Salario:</b> $row[salario]</li>";
+      // echo $codigodepartamento;
+    }
+    echo "</ul>";
+    //suma de salarios
+    $stmt2 = $conexion->prepare("SELECT SUM(salario) AS 'SUMASALARIOS' FROM empleado,emple_depart,departamento WHERE emple_depart.dni=empleado.dni and departamento.cod_dpto=emple_depart.cod_dpto and departamento.nombre_dpto='$nombredept'");
+    $stmt2->execute();
+    $result = $stmt2->setFetchMode(PDO::FETCH_ASSOC);
+    echo "<ul>";
+    foreach($stmt2->fetchAll() as $row) {
+      // echo "Cod_dpto: " . $row["cod_dpto"]."<br>";
+      //obtengo el codigo para filtrar por codigo por que es la primary key
+      echo"<li><b>Suma total</b> $row[SUMASALARIOS]</li>";
+      // echo $codigodepartamento;
+    }
+    echo "</ul>";
+    }
+    catch(PDOException $e)
+        {
+        echo "Error: " . $e->getMessage();
+        }
+}
+
+
 function mostrarsalarioempleadosdepartamento($nombredept,$conexion){
   //saco el codigo del departamento introducido
  $contadorsalario=0;

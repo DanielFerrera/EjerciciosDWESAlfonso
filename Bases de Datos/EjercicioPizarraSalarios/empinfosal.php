@@ -50,7 +50,10 @@
   // Si se pulsa el boton de enviar
   if (isset($_POST['enviar'])) {
     // echo "</br>$nombredept";
-    mostrarsalarioempleadosdepartamento($nombredept,$conexion);
+    //funcion con varios selects
+    // mostrarsalarioempleadosdepartamento($nombredept,$conexion);
+    //funcion que saca empleado+Salario y sum(salario)
+    mostrarempleadosysumasalario($nombredept,$conexion);
   }
 
   $conexion=null;
