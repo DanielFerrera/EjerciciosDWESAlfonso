@@ -1,7 +1,7 @@
 <?php
-function revisarparamentros($nombrecategoria){
+function revisarparamentros($localidad){
   if ($_SERVER["REQUEST_METHOD"]=="POST") {
-    $nombrecategoria=$_POST['nombrecategoria'];
+    $localidad=$_POST['localidad'];
   }
 }
 
@@ -30,39 +30,44 @@ function cerrarconexion($conexion){
 $conexion=null;
 }
 
-function altacategoria($nombrecategoria,$conexion){
-  //miramos si el departamento ya existe con ese mismo nombre
-  //contamos primero cuantos departamentos hay ya creados
-  $contadorcategorias=0;
-  try {
-    $stmt = $conexion->prepare("SELECT ID_CATEGORIA,NOMBRE FROM categoria");
+function altaalmacen($localidad,$conexion){
+
+  $maximo=0;
+    try {
+  $stmt = $conexion->prepare("SELECT MAX(NUM_ALMACEN) FROM almacen");
     $stmt->execute();
     $result = $stmt->setFetchMode(PDO::FETCH_ASSOC);
     foreach($stmt->fetchAll() as $row) {
-      $contadorcategorias++;
+      $maximo=$row["MAX(NUM_ALMACEN)"];
     }
-    // var_dump($arraydepartamentos);
+    echo "$maximo";
   }
   catch(PDOException $e) {
     echo "Error: " . $e->getMessage();
   }
 
-    try {
-
-      $contadorcategorias++;
-      $idcategoria=$contadorcategorias;
-      $idcategoria=str_pad($idcategoria, 3, '0', STR_PAD_LEFT);
-      $idtotal='C-'.$idcategoria;
-      // echo "$idcategoria";
-      $sql = "INSERT INTO categoria (ID_CATEGORIA,NOMBRE) VALUES ('$idtotal','$nombrecategoria')";
-      $conexion->exec($sql);
-      // echo "<br>Cod_dpto: <b>" . $row["cod_dpto"]."</b> Nombre: <b>".$row["nombre_dpto"]."</b><br>";
-      echo "<br>Nueva categoria creada correctamente: $nombrecategoria";
-    }
-    catch(PDOException $e)
-    {
-      echo "Error: ". $sql . "<br>" . $e->getMessage();
-    }
-}
-
+      try {
+        $maximo=$maximo+10;
+        $sql = "INSERT INTO almacen (NUM_ALMACEN,LOCALIDAD) VALUES ('$maximo','$localidad')";
+        $conexion->exec($sql);
+        echo "<br>Nueva almacen creado correctamente: $localidad";
+      }
+      catch(PDOException $e)
+      {
+        echo "Error: ". $sql . "<br>" . $e->getMessage();
+      }
+  }
+  // // ESTO ES SIN SACAR EL MAXIMO
+  // $numalmacenes=0;
+  //   try {
+  // $stmt = $conexion->prepare("SELECT NUM_ALMACEN FROM almacen");
+  //   $stmt->execute();
+  //   $result = $stmt->setFetchMode(PDO::FETCH_ASSOC);
+  //   foreach($stmt->fetchAll() as $row) {
+  //     $numalmacenes=$numalmacenes+10;
+  //   }
+  // }
+  // catch(PDOException $e) {
+  //   echo "Error: " . $e->getMessage();
+  // }
  ?>
