@@ -1,7 +1,7 @@
 <?php
-function revisarparamentros($nombrecategoria){
+function revisarparamentros($localidad){
   if ($_SERVER["REQUEST_METHOD"]=="POST") {
-    $nombrecategoria=$_POST['nombrecategoria'];
+    $localidad=$_POST['localidad'];
   }
 }
 
@@ -30,35 +30,44 @@ function cerrarconexion($conexion){
 $conexion=null;
 }
 
-//falta por hacer el max y sumar 10
-function altaalmacen($nombrecategoria,$conexion){
-  $contadorcategorias=0;
-  try {
-    $stmt = $conexion->prepare("SELECT ID_CATEGORIA,NOMBRE FROM categoria");
+function altaalmacen($localidad,$conexion){
+
+  $maximo=0;
+    try {
+  $stmt = $conexion->prepare("SELECT MAX(NUM_ALMACEN) FROM almacen");
     $stmt->execute();
     $result = $stmt->setFetchMode(PDO::FETCH_ASSOC);
     foreach($stmt->fetchAll() as $row) {
-      $contadorcategorias++;
+      $maximo=$row["MAX(NUM_ALMACEN)"];
     }
-    //contador=$contador+10; algo asi
+    echo "$maximo";
   }
   catch(PDOException $e) {
     echo "Error: " . $e->getMessage();
   }
 
-    try {
-      $contadorcategorias++;
-      $idcategoria=$contadorcategorias;
-      $idcategoria=str_pad($idcategoria, 3, '0', STR_PAD_LEFT);
-      $idtotal='C-'.$idcategoria;
-      $sql = "INSERT INTO categoria (ID_CATEGORIA,NOMBRE) VALUES ('$idtotal','$nombrecategoria')";
-      $conexion->exec($sql);
-      echo "<br>Nueva categoria creada correctamente: $nombrecategoria";
-    }
-    catch(PDOException $e)
-    {
-      echo "Error: ". $sql . "<br>" . $e->getMessage();
-    }
-}
-
+      try {
+        $maximo=$maximo+10;
+        $sql = "INSERT INTO almacen (NUM_ALMACEN,LOCALIDAD) VALUES ('$maximo','$localidad')";
+        $conexion->exec($sql);
+        echo "<br>Nueva almacen creado correctamente: $localidad";
+      }
+      catch(PDOException $e)
+      {
+        echo "Error: ". $sql . "<br>" . $e->getMessage();
+      }
+  }
+  // // ESTO ES SIN SACAR EL MAXIMO
+  // $numalmacenes=0;
+  //   try {
+  // $stmt = $conexion->prepare("SELECT NUM_ALMACEN FROM almacen");
+  //   $stmt->execute();
+  //   $result = $stmt->setFetchMode(PDO::FETCH_ASSOC);
+  //   foreach($stmt->fetchAll() as $row) {
+  //     $numalmacenes=$numalmacenes+10;
+  //   }
+  // }
+  // catch(PDOException $e) {
+  //   echo "Error: " . $e->getMessage();
+  // }
  ?>

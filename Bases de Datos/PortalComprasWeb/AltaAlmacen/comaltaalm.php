@@ -21,14 +21,14 @@
     include "funciones.php";
 
     //Parametros recibidos
-    $nombrecategoria=$_POST['nombrecategoria'];
+    $localidad=$_POST['localidad'];
     $servername="localhost"; $username="root"; $password="rootroot"; $dbname="comprasweb";
 
     //Comprobacion de parametros
     if ($_SERVER["REQUEST_METHOD"]=="POST") {
-      $nombrecategoria=$_POST['nombrecategoria'];
+      $localidad=$_POST['localidad'];
       //Comprobacion de parametros
-      revisarparamentros($nombrecategoria);
+      revisarparamentros($localidad);
     }
 
     //Creamos la conexion
@@ -36,7 +36,7 @@
 
     //Lógica de Negocio
     // Si se pulsa el boton de enviar
-    altaalmacen($nombrecategoria,$conexion);
+    altaalmacen($localidad,$conexion);
 
     //Cerramos la conexion
     cerrarconexion($conexion);

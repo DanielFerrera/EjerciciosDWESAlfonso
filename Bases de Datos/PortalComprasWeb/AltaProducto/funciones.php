@@ -93,8 +93,6 @@ catch(PDOException $e)
     {
     echo "Error: " . $e->getMessage();
     }
-
-
 }
 
 // function altacategoria($nombrecategoria,$conexion){
