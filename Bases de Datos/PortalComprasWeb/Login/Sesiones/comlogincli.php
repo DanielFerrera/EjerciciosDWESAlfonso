@@ -1,8 +1,3 @@
-<?php
-session_start();
-session_unset();
-session_destroy();
-?>
 <html>
 <head>
 <title>Pagina Login</title>
