@@ -36,7 +36,6 @@ function comprobarusuarioycontra($conexion,$nombre,$contraseña){
        echo "Cookie " . $nombrecorrecto . " definida!!!<br>";
        echo "Nombre de la cookie: " . $nombrecorrecto . " y su valor: ".$_COOKIE[$nombrecorrecto];
      }
-
   }
   catch(PDOException $e) {
    echo "Error: " . $e->getMessage();

@@ -1,6 +1,3 @@
-<?php
-session_start();
-?>
 <html>
 <head>
 <title>Pagina 2</title>
