@@ -26,7 +26,7 @@ if(isset($_POST['email']) && isset($_POST['password'])){
   setcookie($cookie_name, $cookie_value, time() + (86400 * 30), "/"); // 86400 segundos = 1 día
     header("Location:./views/view_movwelcome.php");
  }else {//si es incorrecto
-   header("Location:./views/view_formulario.php");
+   header("Location:index.php");
     }
 }
 
