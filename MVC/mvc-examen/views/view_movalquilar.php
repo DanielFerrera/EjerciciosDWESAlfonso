@@ -29,13 +29,13 @@
     $nombrecliente=$todo[0];
     $idcliente=$todo[1];
     $apellidocliente=$todo[2];
-    echo "$nombrecliente $idcliente";
+    echo "$apellidocliente $idcliente";
 
     ?>
   <BR><BR>
 		<B>Identificador Cliente:</B>
     <?php
-    echo "$apellidocliente";
+    echo "$nombrecliente";
      ?> <BR><BR>
 
 		<B>Vehiculos disponibles en este momento:</B> <?php $fechaactual= date("Y-m-d H:i:s");  echo $fechaactual;?> <BR><BR>

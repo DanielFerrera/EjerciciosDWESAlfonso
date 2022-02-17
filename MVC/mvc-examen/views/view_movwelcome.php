@@ -27,18 +27,18 @@
     $nombrecliente=$todo[0];
     $idcliente=$todo[1];
     $apellidocliente=$todo[2];
-    echo "$nombrecliente $idcliente";
+    echo "$apellidocliente $idcliente";
     ?>
   <BR><BR>
 		<B>Identificador Cliente:</B>
     <?php
-    echo "$apellidocliente";
+    echo "$nombrecliente";
      ?> <BR><BR>
        <!--Formulario con botones -->
 
-		<input type="button" value="Alquilar Vehículo" onclick="window.location.href='view_movalquilar.php'" class="btn btn-warning disabled">
-		<input type="button" value="Consultar Alquileres" onclick="window.location.href='view_movconsultar.php'" class="btn btn-warning disabled">
-		<input type="button" value="Devolver Vehículo" onclick="window.location.href='view_movdevolver.php'" class="btn btn-warning disabled">
+		<input type="button" value="Alquilar Vehículo" onclick="window.location.href='../controllers/controller_movalquilar.php'" class="btn btn-warning disabled">
+		<input type="button" value="Consultar Alquileres" onclick="window.location.href='../controllers/controller_movconsultar.php'" class="btn btn-warning disabled">
+		<input type="button" value="Devolver Vehículo" onclick="window.location.href='../controllers/controller_movdevolver.php'" class="btn btn-warning disabled">
 		</br></br>
 		  <BR><a href="view_formulario.php">Cerrar Sesión</a>
 	</div>

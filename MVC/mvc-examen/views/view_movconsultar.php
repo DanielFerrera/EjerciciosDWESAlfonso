@@ -26,15 +26,15 @@
         // var_dump($cookie);
     $todo=explode(" ",$cookie);
     // var_dump($todo);
-    $nombrecliente=$todo[0];
-    $idcliente=$todo[1];
+    $idcliente=$todo[0];
+    $nombrecliente=$todo[1];
     $apellidocliente=$todo[2];
-    echo "$nombrecliente $idcliente";
+    echo "$apellidocliente $nombrecliente";
     ?>
   <BR><BR>
     <B>Identificador Cliente:</B>
     <?php
-    echo "$apellidocliente";
+    echo "$idcliente";
      ?> <BR><BR>
 			 Fecha Desde: <input type='date' name='fechadesde' value='' size=10 placeholder="fechadesde" class="form-control">
 			 Fecha Hasta: <input type='date' name='fechahasta' value='' size=10 placeholder="fechahasta" class="form-control"><br><br>

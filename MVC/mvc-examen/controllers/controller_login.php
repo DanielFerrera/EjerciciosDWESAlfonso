@@ -1,22 +1,37 @@
 <?php
-//eliminamos la cookie usuario al volver de cerrar la sesion
-// setcookie("usuario", "", time() - 3600);
-//require_once ("models/funciones.php");
 require_once ("./views/view_formulario.php");
 
-// $email=$_POST['email'];
-// $password=$_POST['password'];
-//
-// require_once ("models/funciones.php");
-// $idcliente=validar($email,$password,$conexion)[0];
-// $nombrecliente=validar($email,$password,$conexion)[1];
-//
-// if(!empty($idcliente) || !empty($nombrecliente)){
-// 	require_once ("./views/view_correcto.php");
-// 	//echo "Login correcto ".$idcliente." ".$nombrecliente;
-// }else{
-// 	require_once ("./views/view_incorrecto.php");
-// 	//echo "Login incorrecto";
-// }
+include_once "./models/funciones.php";
+
+if(isset($_POST['email']) && isset($_POST['password'])){
+
+  $servername="localhost"; $username="root"; $password="rootroot"; $dbname="movilmad";
+  $conexion=crearconexion($servername, $username, $password, $dbname);
+  //AÑADIMOS PARAMETROS
+  $email=$_POST['email'];
+  $password=$_POST['password'];
+
+  //validamos los parametros introducidos para comprobar si son correctos
+  $nombrecliente=validar($email,$password,$conexion)[1];
+
+  $idcliente=validar($email,$password,$conexion)[0];
+  //apellido
+  $apellidocliente=validar($email,$password,$conexion)[2];
+
+  if ($idcliente!="0"){
+    echo "$idcliente";
+  $cookie_name = "usuario";
+  //creamos la cookie: nombrecliente+idcliente
+  $cookie_value = "$idcliente "."$apellidocliente "."$nombrecliente";
+  setcookie($cookie_name, $cookie_value, time() + (86400 * 30), "/"); // 86400 segundos = 1 día
+    header("Location:./views/view_movwelcome.php");
+ }else {//si es incorrecto
+   header("Location:./views/view_formulario.php");
+    }
+}
+
+// else {// si no se pone nada, se accede directamente
+//     echo "<br />Acceso Restringido debes hacer Login con tu usuario.";
+//   }
 
 ?>
