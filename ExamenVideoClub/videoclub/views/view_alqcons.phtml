@@ -1,0 +1,68 @@
+<html>
+   <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>VIDEOCLUB - IES Leonardo Da Vinci - Alquiler Películas</title>
+    <link rel="stylesheet" href="../css/bootstrap.min.css">
+    </head>
+
+
+
+   <body>
+    <h1 class="text-center"> VIDEOCLUB IES LEONARDO DA VINCI</h1>
+
+    <div class="container ">
+        <!--Aplicacion-->
+		<div class="card border-success mb-3" style="max-width: 30rem;">
+		<div class="card-header">Consulta Alquileres</div>
+		<div class="card-body">
+
+
+
+	<!-- INICIO DEL FORMULARIO -->
+	<form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]);?>" method="post" method="post">
+    <?php
+    //contenido de la cookie
+    // $cookie=$idcliente."#".$nombrecliente."#".$apellidocliente."#".$emailcliente;
+    $cookie=$_COOKIE['usuario'];
+    $cookiedividida=explode("#",$cookie);
+     var_dump($cookie);
+    ?>
+    <B>Nombre Cliente: </B>
+    <?php
+    echo $cookiedividida[1]." ".$cookiedividida[2];
+    ?>
+    <BR>
+      <B>Email Cliente: </B>
+      <?php
+      echo $cookiedividida[3];
+      ?>
+      <BR>
+        <B>Número Socio: </B>
+        <?php
+        echo $cookiedividida[0];
+        ?>
+        <BR><BR>
+
+		 <label for="tematica" ><B> Seleccionar Temática:</B> </label>
+		<select name="tematica" class="form-control">
+      <?php foreach ($desplegable->fetchAll() as $row) { ?>
+        <option value="<?php echo $row["title"]." ".$row["release_year"]." ".$row["rental_rate"]." ".$row["return_date"]; ?>">
+          <?php echo $row["title"]." ".$row["release_year"]." ".$row["rental_rate"]." ".$row["return_date"];?>
+        </option>
+      <?php } ?>
+		</select>
+		<BR>
+		<BR>
+		<div>
+      <input type="button" value="Volver" onclick="window.location.href='../controllers/controller_aqlwelcome.php'" class="btn btn-warning disabled"><BR>
+		</div>
+	</form>
+	<!-- FIN DEL FORMULARIO -->
+  </div>
+
+
+
+</body>
+</html>
