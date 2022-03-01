@@ -34,8 +34,8 @@ function hacercookie2($conexion,$usuario, $clave){
 //---------------ALQUILER PELICULAS---------------------
 function desplegablepeliculas($conexion){
   try{
-// select distinct film.title from rental,film where return_date IS NOT NULL and film.film_id=rental.film_id;
-      $sql = $conexion->prepare("SELECT distinct film.film_id,film.title from rental,film,inventory where return_date IS NOT NULL and film.film_id=rental.film_id and inventory.quantity>1");
+// select distinct film.title,film.film_id from film,inventory where inventory.quantity>0 and film.film_id=inventory.film_id;
+      $sql = $conexion->prepare("select distinct film.title,film.film_id from film,inventory where inventory.quantity>0 and film.film_id=inventory.film_id");
       $sql->execute();
       return $sql;
   }catch(Exception $e){
@@ -49,7 +49,7 @@ function desplegablepeliculas($conexion){
 
 function desplegableconsultapeliculascliente($idcliente,$conexion){
   try{
-      $sql = $conexion->prepare("SELECT film.title,film.release_year,film.rental_rate,rental.return_date from rental,film,customer where rental.customer_id='$idcliente' and rental.return_date is NOT NULL and film.film_id=rental.film_id and rental.customer_id=customer.customer_id order by return_date desc");
+      $sql = $conexion->prepare("SELECT film.title,film.release_year,rental.rental_date,rental.return_date from rental,film,customer where rental.customer_id='$idcliente' and rental.return_date is NOT NULL and film.film_id=rental.film_id and rental.customer_id=customer.customer_id order by return_date desc");
       $sql->execute();
       return $sql;
   }catch(Exception $e){
@@ -70,6 +70,7 @@ function mostrarcesta(){
 //-----------------ALQUILER DE PELICULA------------------
 
 function agregarpeliculasacliente($idcliente,$cookie,$usuario,$conexion){
+  //hago decode para convertir la cookie a array y poder manejarlo
   $arraycookie=json_decode($cookie,true);
   var_dump($arraycookie);
   foreach ($arraycookie as $key) {

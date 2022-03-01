@@ -48,8 +48,8 @@
 		 <label for="tematica" ><B> Seleccionar Temática:</B> </label>
 		<select name="tematica" class="form-control">
       <?php foreach ($desplegable->fetchAll() as $row) { ?>
-        <option value="<?php echo $row["title"]." ".$row["release_year"]." ".$row["rental_rate"]." ".$row["return_date"]; ?>">
-          <?php echo $row["title"]." ".$row["release_year"]." ".$row["rental_rate"]." ".$row["return_date"];?>
+        <option value="<?php echo $row["title"]." ".$row["release_year"]." ".$row["rental_date"]." ".$row["return_date"]; ?>">
+          <?php echo $row["title"]." ".$row["release_year"]." ".$row["rental_date"]." ".$row["return_date"];?>
         </option>
       <?php } ?>
 		</select>
